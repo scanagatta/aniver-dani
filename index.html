@@ -4,29 +4,52 @@
   <meta charset="UTF-8">
   <title>Feliz Aniversário, Daniele!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     body {
       background: linear-gradient(to right, #ffe6f0, #ffc6e0);
       font-family: 'Segoe UI', sans-serif;
       color: #4a4a4a;
+      overflow-x: hidden;
     }
+
     .hero {
-      padding: 80px 0;
+      padding: 80px 20px;
       text-align: center;
+      max-width: 100%;
     }
-    .hero h1 {
-      font-size: 3rem;
-      color: #e83e8c;
+
+    .typing-container {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      padding: 0 10px;
+    }
+
+    .typing-text {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 2px solid #e83e8c;
+      white-space: nowrap;
+      font-size: clamp(1.8rem, 6vw, 3rem);
       font-weight: bold;
+      color: #e83e8c;
+      animation: typing 4s steps(30, end), blink .75s step-end infinite;
+      max-width: 100%;
     }
-    .hero p {
-      font-size: 1.3rem;
-      color: #6c757d;
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
     .section {
       padding: 60px 20px;
       background-color: #fff;
@@ -34,18 +57,35 @@
       margin: 20px auto;
       max-width: 900px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
     }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .image-romantica {
       width: 100%;
       border-radius: 15px;
       margin-top: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
+
+    .image-romantica:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 30px rgba(232, 62, 140, 0.4);
+    }
+
     .quote {
       font-style: italic;
       font-size: 1.2rem;
       margin: 20px 0;
       color: #d63384;
     }
+
     .footer {
       text-align: center;
       padding: 30px 10px;
@@ -53,71 +93,119 @@
       background: #e83e8c;
       border-radius: 0 0 10px 10px;
     }
+
     .heart {
       color: red;
       font-size: 1.5rem;
     }
-    .fade-in {
-      animation: fadeIn 2s ease-in;
+
+    /* Floating hearts */
+    .hearts {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      pointer-events: none;
+      z-index: 1000;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+
+    .hearts span {
+      position: absolute;
+      font-size: 2rem;
+      color: #ff69b4;
+      animation: float 6s infinite ease-in;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="hero fade-in">
-    <h1>Feliz Aniversário, Daniele! 🎂</h1>
+  <!-- TÍTULO -->
+  <div class="hero">
+    <div class="typing-container">
+      <div class="typing-text">Feliz Aniversário, Daniele! 🎂</div>
+    </div>
     <p>Hoje, <strong>17/04</strong>, o mundo ficou mais bonito... porque você nasceu!</p>
   </div>
 
-  <div class="section fade-in">
+  <!-- SEÇÃO 1 -->
+  <div class="section scroll-reveal">
     <p class="quote">"Você é o meu sol em dias nublados, minha calma em dias difíceis e o amor da minha vida."</p>
     <p>
       Neste dia especial, quero que saiba o quanto você é importante para mim. Seu sorriso ilumina meus dias, sua voz acalma meu coração, e seu amor me transforma. 💖
     </p>
-    <img
-      src="assets/1.jpeg"
-      alt="Casal feliz"
-      class="image-romantica"
-    >
+    <img src="assets/1.jpeg" alt="Casal feliz" class="image-romantica">
   </div>
 
-  <div class="section fade-in">
+  <!-- SEÇÃO 2 -->
+  <div class="section scroll-reveal">
     <p class="quote">"Se eu pudesse te dar uma coisa na vida, daria a capacidade de se ver com meus olhos. Só assim entenderia o quanto é especial para mim."</p>
     <p>
       Você é minha parceira, minha amiga, meu amor. Tudo o que faço, tudo o que sonho, é pensando em nós dois. Obrigado por existir, Daniele. 🌹
     </p>
-    <img
-      src="assets/2.jpeg"
-      alt="Casal abraçado"
-      class="image-romantica"
-    >
+    <img src="assets/2.jpeg" alt="Casal abraçado" class="image-romantica">
   </div>
 
-  <div class="section fade-in">
+  <!-- SEÇÃO 3 -->
+  <div class="section scroll-reveal">
     <p class="quote">"Ao seu lado, todos os dias são especiais. Mas hoje é o seu dia, e eu só quero te fazer sorrir."</p>
     <p>
       Que seu aniversário seja repleto de alegria, amor e momentos inesquecíveis. Eu prometo estar ao seu lado em cada um deles. Te amo mais do que ontem e menos do que amanhã. ❤️
     </p>
-    <img
-      src="assets/3.jpeg"
-      alt="Corações"
-      class="image-romantica"
-    >
+    <img src="assets/3.jpeg" alt="Corações" class="image-romantica">
   </div>
 
+  <!-- RODAPÉ -->
   <div class="footer">
     <p>Com todo meu amor,</p>
     <h4>Seu namorado</h4>
     <p class="heart">❤️</p>
   </div>
 
+  <!-- CORAÇÕES FLUTUANTES -->
+  <div class="hearts" id="hearts-container"></div>
+
   <!-- Bootstrap JS -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Corações Flutuantes JS -->
+  <script>
+    const heartContainer = document.getElementById("hearts-container");
+    setInterval(() => {
+      const heart = document.createElement("span");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+      heartContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
   </script>
+
+  <!-- Scroll Reveal JS -->
+  <script>
+    const reveals = document.querySelectorAll(".scroll-reveal");
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      reveals.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          section.classList.add("visible");
+        }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
 </body>
 </html>
